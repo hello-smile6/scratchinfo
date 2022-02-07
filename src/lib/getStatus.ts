@@ -7,7 +7,8 @@ export async function getStatus(user: string) {
   if(rJSON.isScratcher==false) {
     return "New Scratcher";
   }
-  else {
+  else if(rJSON.isScratcher instanceof String) {
     return "Scratcher"; // Will say that Scratch Team members are scratchers, but can't be fixed currently due to isScratcher limitations. However, since Scratch Team members have no extra privileges, it's fine for now.
   }
+  throw new Error("isScratcher didn't give a status"); // I don't return a isScratcher property if the user doesn't exist. This accounts for that.
 }
